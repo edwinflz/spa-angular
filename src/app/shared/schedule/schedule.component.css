@@ -1,0 +1,34 @@
+#schedule .menu {
+    background-color: #9e9e9e;
+}
+
+#schedule .menu-item {
+    padding: 20px;
+    cursor: pointer;
+}
+
+#schedule .menu-item:hover {
+    background-color: #50afdc;
+}
+
+#schedule .menu-item img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+@media (min-width: 768px) {
+    #schedule,
+    .menu {
+        height: 100vh;
+    }
+    #schedule .content {
+        overflow: auto;
+    }
+}
+
+@media (max-width: 768px) {
+    #schedule .content {
+        overflow: hidden;
+    }
+}

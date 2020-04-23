@@ -1,0 +1,14 @@
+#listContact .card-footer a {
+    cursor: pointer;
+}
+
+#listContact {
+    background-color: white;
+    padding: 20px;
+    height: 100vh;
+}
+
+#listCotact .elipsis {
+    text-overflow: ellipsis;
+    overflow: hidden;
+}

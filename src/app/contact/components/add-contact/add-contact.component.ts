@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
+import { Contact } from '@core/models/interfaces/contact.interface';
+import { ContactService } from '@core/services/contact.service';
 
 @Component({
   selector: 'app-add-contact',
@@ -7,9 +11,31 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddContactComponent implements OnInit {
 
-  constructor() { }
+  contact: Contact;
+
+  constructor(private contactService: ContactService, private route: Router) {
+    this.buildContact();
+  }
 
   ngOnInit(): void {
+  }
+
+  buildContact() {
+    this.contact = {
+      name: '',
+      surname: '',
+      description: '',
+      sex: 'Maculino',
+      email: '',
+      telephone: '',
+      company: '',
+    };
+  }
+
+  addContact() {
+    console.log(this.contact);
+    this.contactService.addContact(this.contact);
+    this.route.navigate(['/contacts', 'list-contact']);
   }
 
 }

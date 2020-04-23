@@ -1,10 +1,97 @@
+<div class="row" id="listContact">
 
+    <div class="col-12">
 
-
-<div class="container-fluid h-100">
-    <div class="row h-100">
-        <div class="col-12 h-100">
-            <app-schedule></app-schedule>
+        <div class="row">
+            <div class="col-12">
+                <h1>Lista de contactos</h1>
+            </div>
         </div>
+
+        <ng-container *ngIf="listContacts.length > 0">
+            <div class="row">
+                <div class="col-lg-3 col-md-4 col-sm-6 col-12 mb-4"
+                    *ngFor="let contact of listContacts; let index = index">
+
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h4 class="card-title">{{contact.surname + "," + contact.name + " ("+ contact.sex + ")"}}
+                            </h4>
+                            <p class="card-text">{{contact.description}}</p>
+                        </div>
+                        <div class="card-footer">
+                            <a class="btn btn-primary btn-block text-light" data-toggle="modal"
+                                [attr.data-target]="'#modal'+index" role="button">Ver detalles</a>
+                        </div>
+                    </div>
+
+
+                    <!-- Modal -->
+                    <div class="modal fade" [attr.id]="'modal'+index" tabindex="-1" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">{{contact.surname + "," + contact.name}}</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <div class="col-3">
+                                            <img class="img-fluid"
+                                                [src]="contact.sex === 'Masculino' ? 'assets/img/perfil-fb-hombre.jpg' : 'assets/img/perfil-fb-mujer.jpg'"
+                                                alt="imagen">
+                                        </div>
+                                        <div class="col-9">
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <span>{{contact.description || 'Sin Descripcion'}}</span>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <span class="d-block">Telefono:</span>
+                                                    <span class="d-block">{{contact.telephone}}</span>
+                                                </div>
+                                                <div class="col-6">
+                                                    <span class="d-block">Email:</span>
+                                                    <span class="d-block elipsis">{{contact.email}}</span>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    Empresa: {{contact.company || 'No tiene Empresa'}}
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+
+
+        </ng-container>
+
+        <ng-container *ngIf="listContacts.length === 0">
+            <div class="row">
+                <div class="col-12">
+                    <p>No hay contactos disponibles!</p>
+                </div>
+            </div>
+        </ng-container>
+
+
+
+
     </div>
 </div>

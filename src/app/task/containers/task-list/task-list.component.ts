@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-import { Task } from '../../../core/models/task.model';
+import { Task } from '@core/models/interfaces/task.interface';
 
 @Component({
   selector: 'app-task-list',

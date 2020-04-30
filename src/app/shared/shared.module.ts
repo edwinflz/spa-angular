@@ -6,6 +6,8 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 import { HeaderComponent } from './header/header.component';
 
+import { MaterialModule } from '../material/material.module';
+
 
 @NgModule({
   declarations: [HeaderComponent],
@@ -13,12 +15,14 @@ import { HeaderComponent } from './header/header.component';
     CommonModule,
     RouterModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    MaterialModule
   ],
   exports: [
     HeaderComponent,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    MaterialModule
   ]
 })
 export class SharedModule { }

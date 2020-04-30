@@ -1,22 +1,22 @@
 import { Component, OnInit } from '@angular/core';
 
-import { CockTailFilter } from '@core/models/interfaces/cocktail-filter.interface';
-import { CocktailService } from '@core/services/cocktail.service';
 import { Cocktail } from '@core/models/model/cocktail.model';
 
 @Component({
   selector: 'app-list-cocktails',
-  templateUrl: './list-cocktails.component.html',
-  styleUrls: ['./list-cocktails.component.css']
+  templateUrl: './list-cocktails.component.html'
 })
 export class ListCocktailsComponent implements OnInit {
 
   showFilter: boolean;
-  filter: CockTailFilter;
   listCocktails: Cocktail[];
+  loadCocktails: boolean;
 
+  // Paginación
+  public items: number;
+  public page: number;
 
-  constructor(private cocktailService: CocktailService) {
+  constructor() {
     this.init();
   }
 
@@ -25,18 +25,22 @@ export class ListCocktailsComponent implements OnInit {
 
   init() {
     this.showFilter = false;
-    this.filter = {
-      searchBy: 'name',
-      value: ''
-    };
     this.listCocktails = [];
+    // Elementos a mostrar
+    this.items = 12;
+    // Pagina inicial
+    this.page = 1;
+    this.loadCocktails = true;
   }
 
-  filterData() {
-    this.cocktailService.getCocktailsFilter(this.filter)
-      .subscribe(cocktails => {
-        this.listCocktails = cocktails;
-      });
+  fetchCocktails(list: Cocktail[]) {
+    this.listCocktails = list;
   }
+
+  showLoadCocktails(loadCocktails: boolean){
+      this.loadCocktails = loadCocktails;
+  }
+
+
 
 }

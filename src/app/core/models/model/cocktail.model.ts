@@ -1,33 +1,32 @@
-import get from 'lodash/get';
-import set from 'lodash/set';
-
 import { ICocktail } from '../interfaces/icocktail.interface';
 
 export class Cocktail implements ICocktail {
 
+    private data;
+
     constructor(data) {
-        set(this, 'data', data);
+        this.data = data;
     }
 
-
     get id(): string {
-        return get(this, 'data.idDrink');
+        return this.data.idDrink;
     }
 
     get name(): string {
-        return get(this, 'data.strDrink');
+        return this.data.strDrink;
     }
 
     get img(): string {
-        return get(this, 'data.strDrinkThumb');
+        return this.data.strDrinkThumb;
     }
 
     get glass(): string {
-        return get(this, 'data.strGlass');
+        return this.data.strGlass;
     }
 
     get ingredients(): string[] {
-        return this.getList('data.strIngredient');
+        // return this.getList('data.strIngredient');
+        return this.getList('strIngredient');
     }
 
     get numIngredients(): number {
@@ -35,11 +34,11 @@ export class Cocktail implements ICocktail {
     }
 
     get instructions(): string {
-        return get(this, 'data.strInstructionsES') ? get(this, 'data.strInstructionsES') : get(this, 'data.strInstructions');
+        return this.data.strInstructionsES ? this.data.strInstructionsES : this.data.strInstructions;
     }
 
     get measures(): string[] {
-        return this.getList('data.strMeasure');
+        return this.getList('strMeasure');
     }
 
     get numMeasures(): number {
@@ -49,13 +48,15 @@ export class Cocktail implements ICocktail {
 
     private getList(path: string): string[] {
         let index = 1;
-        let element = get(this, path + index);
+        let element = this.data[path + index];
+        //  let element = get(this, path + index);
         const list = [];
 
         while (element) {
             list.push(element);
             index++;
-            element = get(this, path + index);
+            // element = get(this, path + index);
+            element = this.data[path + index];
         }
 
         return list;

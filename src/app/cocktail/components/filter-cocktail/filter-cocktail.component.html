@@ -1,0 +1,76 @@
+<div class="row" *ngIf="showFilter">
+
+    <div class="col-12">
+
+        <!-- Spinner -->
+        <div class="h-100" *ngIf="!spinner">
+            <div class="spinner">
+                <img src="assets/img/spinner.gif">
+            </div>
+        </div>
+
+
+
+        <form (ngSubmit)="filterData()" *ngIf="spinner">
+
+            <!-- Busqueda por -->
+            <div class="row form-group">
+                <div class="col-4">
+                    <label for="search">Buscar por</label>
+                    <select name="search" class="custom-select" id="search" [(ngModel)]="filter.searchBy">
+                        <option value="name">Nombre</option>
+                        <option value="glass">Vaso</option>
+                        <option value="ingredient">Ingrediente</option>
+                        <option value="category">Categoria</option>
+                    </select>
+                </div>
+
+
+                <!-- Segun el busqueda por, cambiaria el valor de value del input -->
+                <div class="col-4" [ngSwitch]="filter.searchBy">
+                    <label *ngSwitchCase="'name'" for="value">Nombre</label>
+                    <label *ngSwitchCase="'glass'" for="value">Vaso</label>
+                    <label *ngSwitchCase="'ingredient'" for="value">Ingrediente</label>
+                    <label *ngSwitchCase="'category'" for="value">Categoria</label>
+
+                    <input *ngSwitchCase="'name'" type="text" name="value" id="value" class="form-control"
+                        [(ngModel)]="filter.value" />
+
+                    <select *ngSwitchCase="'glass'" name="value" id="value" class="form-control"
+                        [(ngModel)]="filter.value">
+                        <option value="">-- Escoger Opcion --</option>
+                        <option value="Cocktail_glass">Vaso</option>
+                        <option value="Champagne_flute">Champagne</option>
+                    </select>
+
+                    <select *ngSwitchCase="'ingredient'" name="value" id="value" class="form-control"
+                        [(ngModel)]="filter.value">
+                        <option value="">-- Escoger Opcion --</option>
+                        <option value="Gin">Gin</option>
+                        <option value="Vodka">Vodka</option>
+                    </select>
+
+                    <select *ngSwitchCase="'category'" name="value" id="value" class="form-control"
+                        [(ngModel)]="filter.value">
+                        <option value="">-- Escoger Opcion --</option>
+                        <option value="Ordinary_Drink">Bebida Ordinaria</option>
+                        <option value="Cocktail">Cóctel</option>
+                    </select>
+
+
+                </div>
+
+                <!-- Submit -->
+                <div class="col-4 align-self-end">
+                    <button class="btn btn-block btn-primary" type="submit">Filtrar</button>
+                </div>
+
+            </div>
+
+
+        </form>
+
+    </div>
+
+
+</div>
